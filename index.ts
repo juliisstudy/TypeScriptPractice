@@ -1,11 +1,3 @@
-let firstName:string="juli";
-
-
-//any is a type that disables type checking and effectively allows all types to be used.
-let v:any = true;
-v = "string";
-Math.round(v);
-
 
 // a tuple is a typed array with a pre-define length and types for each index
 let tuple:[number,boolean,string];
@@ -76,3 +68,73 @@ enum StatusCode {
     BadRequest =400
 }
 console.log(StatusCode.NotFound);
+
+//type aliase 
+type CarYear = number;
+type CarType = string;
+type CarModel = string;
+type Car ={
+    year:CarYear,
+    type:CarType,
+    model:CarModel
+}
+const carYear: CarYear =2001;
+const carType: CarType ="Toyota"
+const carModel:CarModel="Corolla"
+const carTwo:Car ={
+    year:carYear,
+    type:carType,
+    model:carModel
+}
+
+//Interfaces only apply to objext Type
+interface Rectangle{
+    height:number,
+    width:number
+}
+const rectangle:Rectangle={
+    height:20,
+    width:10
+}
+
+//interface extend
+interface ColoredRectangle extends Rectangle{
+    color:string
+}
+
+const coloredRectangle:ColoredRectangle ={
+    height:20,
+    width:10,
+    color:"red"
+}
+
+//union types would be string or number
+function printStatusCode(code:string|number){
+    console.log(`code is ${code}`)
+}
+printStatusCode(404);
+printStatusCode('404');
+
+function getTime():number{
+    return new Date().getTime();
+}
+//void return type
+ function printHello():void{
+    console.log('h');
+ }
+
+ function multiply(a:number,b:number){
+    return a*b;
+ }
+
+ //optional parameters
+ function add(a:number, b:number,c?:number){
+    return a+b+(c||0);
+ }
+
+ //default parameters
+ function pow(value:number,exponent:number =10){
+    return value**exponent;
+ }
+
+ 
