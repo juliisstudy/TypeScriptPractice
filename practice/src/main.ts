@@ -26,3 +26,66 @@ names.push('one')
 
 //tuple
 let myTuple:[string,number,boolean] = ['one',1,true]
+//objects
+let myObj:object
+myObj=[]
+myObj ={}
+
+type Artist ={
+    name:string,
+    active?:boolean,
+    projects:(string|number)[]
+}
+
+let vinci :Artist = {
+    name:'Vinci',
+    active:false,
+    projects:["Mona Lisa","Last Supper"]
+}
+const greetArtist = (artist:Artist) =>{
+    return `Hello ${artist.name}`
+}
+
+console.log(greetArtist(vinci))
+
+enum Grade {
+    U =1,
+    D,
+    C,
+    B,
+    A,
+}
+
+type stringOrNum = string|number
+type stringOrNumberArray = (string|number)[]
+
+type UserId = stringOrNum
+let userName:'juli'|'joey'
+userName = 'joey'
+
+const add = (a:number,b:number):number=>{
+    return a+b
+}
+const logMsg = (message:any):void=>{
+    console.log(message)
+}
+let subtract = function(c:number,d:number):number{
+    return c-d
+
+}
+type mathFunction = (a:number,b:number)=>number
+
+let multiply:mathFunction = function(c,d){
+    return c*d
+}
+logMsg(multiply(2,3))
+
+interface mathFunctionInt {
+    (a:number,b:number):number
+}
+const addAll=(a:number,b:number,c?:number):number=>{
+    if(typeof c!=='undefined'){
+        return a+b+c
+    }
+    return a+b
+}
