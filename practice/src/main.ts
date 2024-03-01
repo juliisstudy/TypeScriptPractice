@@ -71,8 +71,9 @@ const logMsg = (message:any):void=>{
 }
 let subtract = function(c:number,d:number):number{
     return c-d
-
 }
+
+//alias would not work for default value
 type mathFunction = (a:number,b:number)=>number
 
 let multiply:mathFunction = function(c,d){
@@ -83,9 +84,39 @@ logMsg(multiply(2,3))
 interface mathFunctionInt {
     (a:number,b:number):number
 }
+
+//optional parameters
 const addAll=(a:number,b:number,c?:number):number=>{
     if(typeof c!=='undefined'){
         return a+b+c
     }
     return a+b
+}
+
+//rest parameters
+const total = (a:number,...nums:number[]):number =>{
+    return a+nums.reduce((prev,curr)=>prev + curr)
+}
+
+logMsg(total(1,2,3,4))
+
+const createError = (errMsg:string):never=>{
+    throw new Error(errMsg)
+}
+
+const infinite = ()=>{
+    let i:number =1
+    while(true){
+        i++
+        if(i>100)break
+    }
+}
+//custom type guard
+const isNumber = (value:any):boolean =>{
+    return typeof value ==='number' ?true:false
+}
+const numberOrString = (value:number | string): string =>{
+    if(typeof value === 'string' ) return 'string'
+    if(isNumber(value)) return 'number'
+    return createError('This should never happen!')
 }

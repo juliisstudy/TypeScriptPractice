@@ -1,21 +1,30 @@
-import Heading from './components/Heading'
-import {Section} from './components/Section'
-import './App.css'
-import Counter from "./components/Counter"
-import List from './components/List'
+import {useState,useEffect,useCallback,MouseEvent,KeyboardEvent} from 'react'
 
-import {useState} from 'react'
+
+interface User {
+  id:number,
+  username:string,
+}
 
 function App() {
 
-  const [count,setCount] = useState<number>(1)
+  const [count,setCount] = useState<number>(0)
+  const [users,setUsers] = useState<User[]|null>(null)
 
+  useEffect(()=>{
+    console.log('mounting')
+
+    return ()=>console.log('unmounting')
+  },[users])
+
+  // const addTwo = useCallback((e:MouseEvent<HTMLButtonElement>|
+  //   KeyboardEvent<HTMLButtonElement>):void =>setCount(prev=>prev+1),[])
   return (
     <>
-    <Heading title={"Hello"} />
-    <Section >This is my Section.</Section>
-    <Counter setCount = {setCount}>Counter is {count}</Counter>
-    <List items={["coffee","milk","bread"]} render={(item:string)=><span className="gold">{item}</span>} />
+    <div>
+      <h1>{count}</h1>
+      {/* <button onClick={addTwo}>add</button> */}
+    </div>
     </>
   )
 }
